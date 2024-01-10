@@ -26,18 +26,45 @@ class _CityScreenState extends State<CityScreen> {
               Align(
                 alignment: Alignment.topLeft,
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.transparent,
+                    shadowColor: Colors.transparent,
+                  ),
                   onPressed: () {},
                   child: const Icon(
                     Icons.arrow_back_ios,
-                    size: 50.0,
+                    size: 30.0,
+                    color: Colors.white,
                   ),
                 ),
               ),
               Container(
                 padding: const EdgeInsets.all(20.0),
-                child: null,
+                child: TextField(
+                  style:  const TextStyle(color: Colors.black),
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                    suffixIcon: Container(
+                      margin: const EdgeInsets.only(right: 5),
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(50), color: Colors.blue,),
+                      child:  IconButton(
+                          icon:  const Icon(Icons.search,color: Colors.white,),onPressed: (){}),
+                    ),
+                    hintText: "Enter City Name",
+                    hintStyle: const TextStyle(color: Colors.grey),
+                    border: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(35)),
+                      borderSide: BorderSide.none,
+                    )
+                  ),
+                ),
               ),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  shadowColor: Colors.transparent,
+                ),
                 onPressed: () {},
                 child: const Text(
                   'Get Weather',

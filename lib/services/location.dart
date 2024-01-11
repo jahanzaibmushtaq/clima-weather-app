@@ -1,13 +1,20 @@
+import 'package:clima_weather_app/utilities/permisson_denied_alert_dialog.dart';
 import 'package:geolocator/geolocator.dart';
 
 class LocationController{
   double? latitude;
   double? longitude;
 
-  Future<void> getLocation() async {
+  Future getLocation() async {
     try{
-      LocationPermission permission = await Geolocator.requestPermission();
-      Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.low);
+       LocationPermission permission = await Geolocator.requestPermission();
+       if (permission == LocationPermission.denied || permission == LocationPermission.deniedForever) {
+         permission = await Geolocator.requestPermission();
+         if (permission == LocationPermission.denied) {
+           return Future.error('Location permissions are denied');
+         }
+       }
+       Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.low);
       latitude = position.latitude;
       longitude = position.longitude;
       print(position);
@@ -15,6 +22,7 @@ class LocationController{
       print(e);
     }
   }
+
 
   /*double? latitude;
   double? longitude;
